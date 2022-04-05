@@ -1,0 +1,89 @@
+button{
+    text-decoration: none;
+    border: 0;
+
+    cursor: pointer;
+}
+
+.body_comp{
+    display: flex;
+}
+
+.left{
+    height: 300px;
+    width: 360px;
+}
+
+.right{
+    height: 300px;
+    width: 210px;
+}
+
+.hat{
+
+    margin-left: 25px;
+    margin-bottom: 2px;
+
+    display: grid;
+    grid-template-columns: 100fr 1fr 1fr;
+
+    color: rgb(239, 130, 131);
+
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#upload_bt{
+    color: white;
+
+    background-color: rgb(242, 167, 164);
+    border-radius: 50px;
+    
+    padding: 0 20px 0 20px;
+
+    font-weight: bold;
+}
+
+.box{
+    border: 3px solid rgb(251, 233, 234);
+    border-radius: 30px;
+
+    height: 100%;
+}
+
+.content_comp{
+    display: flex;
+
+    height: 100%;
+    margin:20px;
+
+    flex-direction: column;
+}
+
+.food{
+    border-bottom: 2px solid rgb(208, 208, 208);
+
+    font-weight: bold;
+    color: rgb(124, 124, 124);
+
+    text-align: center;
+
+    line-height: 3;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+#open_bt{
+    background-color: rgb(245, 217, 216);
+
+    color: rgb(230, 119, 115);
+
+    border-radius: 20px;
+    font-size: 18px;
+
+    padding: 5px 10px 5px 10px;
+
+    margin: 10px 0px 10px 0px;
+}
