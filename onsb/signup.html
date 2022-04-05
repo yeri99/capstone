@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <title>ONSBsignup</title>
+    <style>
+        #img-logo{
+            margin-right: 10px;
+        }
+        #welcome{
+            color: #FD7070;
+            margin: 0 10px 10px 0;
+            font-size: 20px;
+        }
+        #on{
+            color: #969696;
+            margin: 0 10px 10px 0;
+            font-size: 20px;
+        }
+        #logo {
+            margin-left: 10%;
+            margin-top: 100px;
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+        }
+        #signup-field {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: solid #ffe3e3;
+            border-width: 3px;
+            border-radius: 20px;
+            width: 80%;
+            margin-left: 10%;
+            height: 400px;
+        }
+        #input-field {
+            margin: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            background-color: #F0F0F0;
+            border-radius: 20px;
+            padding: 10px 20px 10px 20px;
+        }
+        input{
+            border-width: 0;
+            background-color: transparent;
+            width: 280px;
+            padding-left: 10px;
+        }
+        #btn_signup{
+            border: solid #ffe3e3;
+            border-width: 3px;
+            border-radius: 40px;
+            background-color: #fbd4d4;
+            font-size: 20px;
+            color: #FD7070;
+            padding: 15px;
+            width: 250px;
+            margin-top: 30px;
+            font-weight: 900;
+            font-style: italic;
+        }
+        input::placeholder {
+            color: #969696;
+        }
+    </style>
+    <head>
+        <div id="logo">
+            
+            <img id="img-logo" src="logo.jpeg" width="200"/>
+            <p id="on">welcome to</p>
+            <p id="welcome">online-usb,</p>
+            <p id="on">onsb</p>
+        </div>
+    </head>
+    <body>
+        <div id="signup-field">
+            <div id="input-field">
+                <img src="profile.svg" width="40"/>
+                <input id="sub-input" type="text" name="id" placeholder="Input the ID"/>
+            </div>
+            <div id="input-field">
+                <img src="pwd.svg" width="40"/>
+                <input id="sub-input" type="password" name="psw" placeholder="Input the password"/>
+            </div>
+            <button type="submit" id="btn_signup">SIGN UP</button>
+        </div>
+    </body>
+</html>
