@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <title>ONSB - share</title>
+    <style>
+        #feild-name {
+            margin: 100px 0 0 13%;
+            font-size: 30px;
+            display: flex;
+            flex-direction: row;
+            font-size: 40px;
+            color: #FD7070;
+            font-weight: 700;
+            font-style: italic;
+        }
+        #img-re{
+            width: 40px;
+            height: 40px;
+            margin: 100px 13% 0 0;
+        }
+        #header{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        #share-field {
+            display: flex;
+            flex-direction: column;
+            border: solid #ffe3e3;
+            border-width: 3px;
+            border-radius: 40px;
+            width: 80%;
+            margin-left: 10%;
+            height: 500px;
+        }
+        #file-list{
+            display: flex;
+            flex-direction: column;
+        }
+        #list{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-size: 25px;
+            color: #7e7e7e;
+            font-weight: 600;
+            padding: 10px 10px 10px 10px;
+            margin: 0 40px 0 40px;
+            border-bottom: solid #cccbcb;
+            border-width: 2px;
+            align-items: center;
+        }
+        #btn-open{
+            display: flex;
+            justify-content:center;
+            border: solid #ffe3e3;
+            border-width: 3px;
+            border-radius: 40px;
+            background-color: #fbd4d4;
+            font-size: 30px;
+            color: #FD7070;
+            padding: 15px;
+            padding: 10px 20px 10px 20px;
+            font-weight: 400;
+        }
+        #logo{
+            width: 80px;
+            margin-left: 80%;
+            margin-top: 10px;
+        }
+    </style>
+    <head>
+        <div id="header">
+            <p id="feild-name">User ID</p>
+            <img id="img-re" src="re.svg"/>
+        </div>
+    </head>
+    <body>
+        <div id="share-field">
+            <dl id="file-lists">
+                <dt id="list">
+                    <p>캡스톤_수정본.pptx</p>
+                    <button id="btn-open">open</button>
+                </dt>
+                <dt id="list">
+                    <p>개인정보활용동의서.pdf</p>
+                    <button id="btn-open">open</button>
+                </dt>
+            </dl>
+        </div>
+        <div><img id="logo" src="logo.jpeg"/></div>
+    </body>
+</html>
