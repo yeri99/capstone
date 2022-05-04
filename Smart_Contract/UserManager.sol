@@ -8,7 +8,7 @@ contract UserManager {
       uint256 lastLogin;
   }
 
-  mapping(string => User) user;
+  mapping(string => User) internal user;
   function register(
       string memory _id,
       string memory _password
@@ -31,13 +31,18 @@ contract UserManager {
        }
   }
 
-  function deleteUser(string memory _id) public view returns (bool) {
+  function deleteUser(string memory _id) public returns (bool) {
       if(user[_id].isUser == true){
-        user[_id].isUser == false;
+        user[_id].isUser = false;
         return true;
       }
       return false;
 
+  }
+  
+  // user check
+  function checkUser(string memory _id) public view returns (bool){
+      return user[_id].isUser;
   }
 
 }
