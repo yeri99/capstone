@@ -3,6 +3,7 @@ async function signup(){
         const id = document.getElementById("inputId").value;
         const psd = document.getElementById("inputPsd").value;
         console.log(id,psd);
+        
         const ABI = [
             {
                 "inputs": [
@@ -96,6 +97,11 @@ async function signup(){
                 "type": "function"
             }
         ]
+        
+        //base64로 인코딩하여 저장        
+        var psdkey = CryptoJS.enc.Utf8.parse(psd);
+        var psdbase64 = CryptoJS.enc.Base64.stringify(psdkey);
+        
         // 프라이빗 네트워크 연결
         var web3 = new Web3(new Web3.providers.HttpProvider("http://000.000.000.000:0000"));
          // 연결 계좌 확인
@@ -110,7 +116,7 @@ async function signup(){
          console.log(contract);
          //var result = await contract.methods.checkUser(id).call({from:'00x552d12E774691CE7cA7aac165d40aaC6f60aca6E'});
       // 회원 가입
-         var result = await contract.methods.register(id,psd).send({from:'0x552d12E774691CE7cA7aac165d40aaC6f60aca6E'})
+         var result = await contract.methods.register(id,psdbase64).send({from:'0x552d12E774691CE7cA7aac165d40aaC6f60aca6E'})
          .then(function(receipt){});
          console.log(result);
     }catch(error){
