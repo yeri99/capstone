@@ -103,7 +103,7 @@ async function signup(){
         var psdbase64 = CryptoJS.enc.Base64.stringify(psdkey);
         
         // 프라이빗 네트워크 연결
-        var web3 = new Web3(new Web3.providers.HttpProvider("http://115.85.181.212:30000"));
+        var web3 = new Web3(new Web3.providers.HttpProvider("http://000.000.000.000"));
          // 연결 계좌 확인
          var bal = await web3.eth.getBalance("0x552d12E774691CE7cA7aac165d40aaC6f60aca6E");
          console.log(bal);
