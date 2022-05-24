@@ -2,13 +2,18 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Infura IPFS CORS issue</title>
-
+    <title>ONSB - share</title>
+    <link rel="stylesheet" href="style2.css">
+    <script src="https://kit.fontawesome.com/e21810c481.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://unpkg.com/ipfs-http-client@30.1.3/dist/index.js"></script>
     <script src="https://bundle.run/buffer@5.2.1"></script>
   </head>
+  
   <body>
+    <div class="body_comp">
+        <div class="left">
+            <div class="hat">User ID<i class="fa-solid fa-trash"></i>
 <!-- readAsArrayBuffer to Buffer to Infura to IPFS -->
     <h3>Upload to IPFS</h3>
 
@@ -35,6 +40,27 @@
             reader.readAsArrayBuffer(this.files[0]);
         })
     </script>
+
+            <div class="box">
+                <div class="content_comp">
+                    <dl id='file-lists'>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="hat">Request List</div>
+            <div class="box">
+                <div class="food">
+                    000.000.000.000
+                    <br>
+                    12:25:25
+                    <br>
+                    <button>accept</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
   </body>
 </html>
