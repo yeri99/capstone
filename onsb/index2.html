@@ -6,16 +6,61 @@
     <title>ONSB - share</title>
     <link rel="stylesheet" href="style2.css">
     <script src="https://kit.fontawesome.com/e21810c481.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./node_modules/web3/dist/web3.min.js?ver=1"></script>
+    <script src="bower_components/web3/dist/web3.min.js?ver=1" charset="utf-8"></script>
+    <script type="text/javascript" src="./node_modules/fs/dist/fs.min.js?ver=1"></script>
+    <script type="text/javascript" src="./node_modules/ipfs-api/dist/index.min.js?ver=1"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://unpkg.com/ipfs-http-client@30.1.3/dist/index.js"></script>
+    <script src="https://bundle.run/buffer@5.2.1"></script>
+    <script type="text/javascript" src="./uploadFile.js"></script>
 </head>
 
 <body>
     <div class="body_comp">
         <div class="left">
-            <div class="hat">User ID<i class="fa-solid fa-trash"></i>
-                <script type="text/javascript" src="uploadFile.js"></script>
+                <div class="hat" id="userId">User ID<i class="fa-solid fa-trash"></i>
+                <script>
+                        var id = localStorage.getItem('id');
+                        var psd = localStorage.getItem('psd');
+                        console.log(id);
+                        document.getElementById("userId").innerHTML = id;
+                        anyLoadFile();
+                </script>
+
                 <div class="hid-btn"><label for='files' id="upload_bt">upload</label>
-                <input id="files" type='file' onchange="onFileUpload()" multiple/></div>
-            </div>
+                <input id="files" type='file' multiple/></div>
+                <script>
+                        const ipfs = window.IpfsHttpClient('ipfs.infura.io', '5001', { protocol: 'https' });
+                         $("#files").on("change", function() {
+                                 var reader;
+                                 var file;
+                                 var nameArr = new Array();
+                                 var count = 0;
+                                let fileInput = document.getElementById("files").files;
+                                 //const selectedFile = [...fileInput.files];
+                                 for(let i = 0; i < fileInput.length;i++){
+                                         reader = new FileReader();
+                                         file = fileInput[i];
+                                        nameArr.push(file.name);
+                                         reader.onload =  fileInput => {
+                                        var buffers = buffer.Buffer(fileInput.target.result); // honestly as a web developer I do not fully appreciate the difference between buffer and arrayBuffer
+                                                 ipfs.add(buffers, (err, result) => {
+                                                        console.log(err, result);
+                                                        ipfsLink =  result[0].hash;
+                                                        console.log(result)
+                                                         addList(nameArr[count++], ipfsLink);
+                                                        uploadToNet(id, file.name, result[0].hash);
+                                                })
+                                        }
+                                                reader.readAsArrayBuffer(file);
+                                 }
+                             }
+                        
+                        )
+                        $(document).on()
+                </script>
+                </div>
             <div class="box">
                 <div class="content_comp">
                     <dl id='file-lists'>
