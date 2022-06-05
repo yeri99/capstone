@@ -108,17 +108,27 @@ async function signup(){
          var bal = await web3.eth.getBalance("0x552d12E774691CE7cA7aac165d40aaC6f60aca6E");
          console.log(bal);
          //web3.eth.defaultAccount = web3.eth.accounts[0];
-      // 계정 unlock
-         web3.eth.personal.unlockAccount("0x552d12E774691CE7cA7aac165d40aaC6f60aca6E", "gkdid112")
-         .then(console.log('Account unlocked!'));
+      /// 계정 unlock
+         var senderAddress = "0x552d12E774691CE7cA7aac165d40aaC6f60aca6E"
+         await web3.eth.personal.unlockAccount(senderAddress, "gkdid112",900000000);
       // contract 연결
-         var contract = new web3.eth.Contract(ABI,"0x275159C9C60A538667140Ef31CC19AAeB3809345");
-         console.log(contract);
-         //var result = await contract.methods.checkUser(id).call({from:'00x552d12E774691CE7cA7aac165d40aaC6f60aca6E'});
-      // 회원 가입
-         var result = await contract.methods.register(id,psdbase64).send({from:'0x552d12E774691CE7cA7aac165d40aaC6f60aca6E'})
-         .then(function(receipt){});
-         console.log(result);
+         var contract = new web3.eth.Contract(ABI,"0x4CE652d505419F2B89A910fdF7573C1E2c84Ac7b");
+         var senderAddress = "0x552d12E774691CE7cA7aac165d40aaC6f60aca6E"
+            // 회원 가입
+         // user check
+            var check = await contract.methods.checkUser(id).call({from:'0x552d12E774691CE7cA7aac165d40aaC6f60aca6E'})
+            // not user
+            if(!check){
+                var send = await contract.methods.register(id,psdbase64).send({from:'0x552d12E774691CE7cA7aac165d40aaC6f60aca6E'})
+                    check = await contract.methods.checkUser(id).call({from:'0x552d12E774691CE7cA7aac165d40aaC6f60aca6E'})
+                    if(check)
+                            location.replace("index.html")
+            }
+            // already exist
+            else{
+
+                 console.log("sign up fail");
+            }
     }catch(error){
         return error;
     }
