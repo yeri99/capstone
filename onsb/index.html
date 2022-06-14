@@ -116,6 +116,7 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script type="text/javascript" src="./node_modules/fs-web/dist/fs.min.js?ver=1"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+        <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
         <script>
                 let response = 0
                 async function getIpClient() {
@@ -137,7 +138,44 @@
                         <img src="profile.svg" width="40"/>
                         <input id="openId" type="text" name="id" placeholder="Input the ID"/>
                     </div>
-                    <button type="submit" id="btn_open" onclick="moveToId()">OPEN FILE</button>
+                    <script>
+                        async function save_request(){
+
+                                const firebaseConfig = {
+                                    apiKey: "AIzaSyAC0UJNOEI8XY1Nw0QM_fUBr8htQa6jLSs",
+                                    authDomain: "file-system-afb82.firebaseapp.com",
+                                    projectId: "file-system-afb82",
+                                    storageBucket: "file-system-afb82.appspot.com",
+                                    messagingSenderId: "990119227017",
+                                    appId: "1:990119227017:web:316221c7532da8b5826058",
+                                    measurementId: "G-D4QMN894C6",
+                                    databaseURL: "https://file-system-afb82-default-rtdb.firebaseio.com"
+                                };
+
+                                // Initialize Firebase
+                                const app = firebase.initializeApp(firebaseConfig);
+
+                                var database = firebase.database();
+                                var id = document.getElementById("openId").value;
+                                //var requestRef = database.ref('request');
+                                const ip = response.data.ip;
+                                let today = new Date();
+                                let hours = today.getHours(); // 시
+                                let minutes = today.getMinutes();  // 분
+                                let seconds = today.getSeconds();  // 초
+
+                                let time = hours + ':' + minutes + ':' + seconds;
+                                await database.ref('request/'+id).set({
+                                        ip: ip,
+                                        timestamp: time, 
+                                        answer: false
+                                });
+                                localStorage.setItem('id',id);
+
+                                location.replace("loading.html")
+                            }
+                    </script>
+                    <button type="submit" id="btn_open" onclick="save_request()">OPEN FILE</button>
             </div>
             <div id="body-sub">
                 <div id="signin-field">
