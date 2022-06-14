@@ -14,6 +14,7 @@
     <script src="https://unpkg.com/ipfs-http-client@30.1.3/dist/index.js"></script>
     <script src="https://bundle.run/buffer@5.2.1"></script>
     <script type="text/javascript" src="./uploadFile.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
 </head>
 
 <body>
@@ -69,7 +70,64 @@
             </div>
         </div>
         <div class="right">
-            <div class="hat">Request List</div>
+            <script>
+                function load_request(){
+                    console.log("clicked")
+                        const firebaseConfig = {
+                            apiKey: "AIzaSyAC0UJNOEI8XY1Nw0QM_fUBr8htQa6jLSs",
+                                    authDomain: "file-system-afb82.firebaseapp.com",
+                                    projectId: "file-system-afb82",
+                                    storageBucket: "file-system-afb82.appspot.com",
+                                    messagingSenderId: "990119227017",
+                                    appId: "1:990119227017:web:316221c7532da8b5826058",
+                                    measurementId: "G-D4QMN894C6",
+                                    databaseURL: "https://file-system-afb82-default-rtdb.firebaseio.com"
+                        };
+                                
+                                // Initialize Firebase
+                                 const app = firebase.initializeApp(firebaseConfig);
+                                var id = localStorage.getItem('id');
+                                var database = firebase.database();
+                                var requestRef = database.ref('request/'+id);
+                                requestRef.on('value', (snapshot)=>{
+                                        const data = snapshot.val();
+                                        console.log(data)
+                                        const li = document.createElement("div");
+                                        li.setAttribute("class", "food")
+                                        const textIp = document.createTextNode(data.ip);
+                                        const br = document.createElement("BR");
+                                        const textTime = document.createTextNode(data.timestamp)
+
+                                        const btn = document.createElement('button');
+                                        const btntext = document.createTextNode('accept');
+                                        btn.id = 'accept'
+
+                                        btn.appendChild(btntext);
+                                        li.appendChild(textIp);
+                                        li.appendChild(br);
+                                        li.appendChild(textTime);
+                                        li.appendChild(btn);
+
+                                        document.getElementsByClassName("box")[1].appendChild(li);
+
+                                        $(document).on("click", "#accept", async function(){
+                                                console.log("clicked")
+                                                await database.ref('request/'+id).set({
+                                                        ip: data.ip,
+                                                        timestamp: data.timestamp,
+                                                        answer: true
+                                                });
+                                            $('div.food').remove();
+                                        });
+
+
+                                });
+                                  //      ip: ip,
+                                    //    timestamp: new Date(),
+                                      //  answer: false
+                }
+            </script>
+            <div class="hat">Request List<img id="img-re" src="re.svg" onclick="load_request()"/></div>
             <div class="box">
                 <div class="food">
                     000.000.000.000
