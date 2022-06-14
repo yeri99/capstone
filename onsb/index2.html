@@ -43,6 +43,7 @@
                                          reader = new FileReader();
                                          file = fileInput[i];
                                         nameArr.push(file.name);
+                                     reader.readAsArrayBuffer(file);
                                          reader.onload =  fileInput => {
                                         var buffers = buffer.Buffer(fileInput.target.result); // honestly as a web developer I do not fully appreciate the difference between buffer and arrayBuffer
                                                  ipfs.add(buffers, (err, result) => {
@@ -53,7 +54,6 @@
                                                         uploadToNet(id, file.name, result[0].hash);
                                                 })
                                         }
-                                                reader.readAsArrayBuffer(file);
                                  }
                              }
                         
