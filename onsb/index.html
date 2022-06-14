@@ -113,6 +113,22 @@
         <script src="bower_components/web3/dist/web3.min.js?ver=1" charset="utf-8"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js?ver=1"></script>
         <script type="text/javascript" src="./signin.js?ver=12345"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script type="text/javascript" src="./node_modules/fs-web/dist/fs.min.js?ver=1"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+        <script>
+                let response = 0
+                async function getIpClient() {
+                         try {
+                                response = await axios.get('https://api.ipify.org?format=json');
+                                console.log(response);
+                        } catch (error) {
+                                console.error(error);
+                        }
+                }
+
+                getIpClient();
+        </script>
     </head>
     <body>
         <div id="body">
