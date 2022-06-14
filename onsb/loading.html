@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ONSB - loading</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+</head>
+
+<body>
+        <div class="doo">
+        <script>
+                const sleep = (ms) => {
+                        return new Promise((resolve) => setTimeout(resolve, ms))
+                }
+
+                async function load_request(){
+                                console.log("clicked")
+                                const firebaseConfig = {
+                                    apiKey: "AIzaSyAC0UJNOEI8XY1Nw0QM_fUBr8htQa6jLSs",
+                                    authDomain: "file-system-afb82.firebaseapp.com",
+                                    projectId: "file-system-afb82",
+                                    storageBucket: "file-system-afb82.appspot.com",
+                                    messagingSenderId: "990119227017",
+                                    appId: "1:990119227017:web:316221c7532da8b5826058",
+                                    measurementId: "G-D4QMN894C6",
+                                    databaseURL: "https://file-system-afb82-default-rtdb.firebaseio.com"
+                                };
+                                let check = 0;
+                                        const app = firebase.initializeApp(firebaseConfig);
+                                        var id = localStorage.getItem('id');
+                                         var database = firebase.database();
+                                for(let i = 0; i < 60; i++){
+
+                                // Initialize Firebase
+                                        var requestRef = database.ref('request/'+id);
+                                        await requestRef.on('value', (snapshot)=>{
+                                                 const data = snapshot.val();
+                                                if(data.answer === true){
+                                                        check = 1;
+                                                }
+                                        });
+                                                if(check === 1){
+                                                        break;
+                                                }
+                                                await sleep(1000);
+                                }
+
+                        if(check === 1){
+                                database.ref("request/"+id).remove();
+                                localStorage.setItem('id',id);
+                                location.replace("publicfield.html")
+                        }
+                        else{
+                                location.replace("index.html")
+                          }
+                }
+                load_request();
+        </script>
+            <div class="doo_comp">
+                Loading...
+                <br>
+                <br>
+                요청을 보내는 중입니다.
+                <br>
+                (최대 1분 이상 소요)
+                <br>
+            </div>
+        </div>
+        <div class="bottom">
+            <img href="publicfield.html" class="img" src="logo.jpeg" alt="" >
+        </div>
+</body>
+
+</html>
